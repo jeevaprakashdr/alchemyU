@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getLatestBlockNumber = void 0;
 const alchemy_sdk_1 = require("alchemy-sdk");
 const settings = {
     apikey: "hfbkXarnnvxWntWYHm5plmSd9QsJQoWy",
@@ -17,8 +18,14 @@ const settings = {
 const alchemy = new alchemy_sdk_1.Alchemy(settings);
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
-        const latestBlockNumber = yield alchemy.core.getBlockNumber();
+        const latestBlockNumber = yield getLatestBlockNumber(alchemy.core.getBlockNumber);
         console.log(`the latest block number is ${latestBlockNumber}`);
     });
 }
+function getLatestBlockNumber(getBlockNumber) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield getBlockNumber();
+    });
+}
+exports.getLatestBlockNumber = getLatestBlockNumber;
 main();
